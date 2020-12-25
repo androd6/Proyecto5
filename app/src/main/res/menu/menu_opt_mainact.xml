@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mnoptmaitem1"
+        android:title="@string/manu_opt_mainact_item1"
+        android:orderInCategory="1"
+        >
+    </item>
+
+    <item
+        android:id="@+id/mnoptmaitem2"
+        android:title="@string/manu_opt_mainact_item2"
+        android:orderInCategory="2"
+        >
+    </item>
+
+</menu>
