@@ -56,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(varIntent);
                 break;
             case R.id.mnoptmaitem1:
-                //varIntent = new Intent(this, EmailActivity.class);
-                //startActivity(varIntent);
+                varIntent = new Intent(this, EmailActivity.class);
+                startActivity(varIntent);
                 break;
         }
         return super.onOptionsItemSelected(item);
