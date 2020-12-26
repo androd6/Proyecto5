@@ -16,4 +16,6 @@
     <string name="v4_boton">Enviar Mensaje</string>
     <string name="v4_suaddress">Su cuenta de correo de gmail</string>
     <string name="v4_supassword">Su password de email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
