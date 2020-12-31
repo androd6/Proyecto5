@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import com.ar6.proyecto5.R;
 import com.ar6.proyecto5.adapters.Petadapter;
 import com.ar6.proyecto5.data.Pet;
+import com.ar6.proyecto5.presentador.IPetFragmentPresenter;
+import com.ar6.proyecto5.presentador.PetFragmentPresenter;
 
 import java.util.ArrayList;
 
@@ -21,50 +23,15 @@ import java.util.ArrayList;
  * Use the {@link PetFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PetFragment extends Fragment {
+public class PetFragment extends Fragment implements IPetFragmentView{
 
     private ArrayList<Pet> varPetsList = new ArrayList<>();
     //private CreatePet varPetsIni = new CreatePet();
     private RecyclerView varRvListPet;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private IPetFragmentPresenter varIPetPresenter;
 
     public PetFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PetFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PetFragment newInstance(String param1, String param2) {
-        PetFragment fragment = new PetFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -76,20 +43,27 @@ public class PetFragment extends Fragment {
 
         varView = inflater.inflate(R.layout.fragment_pet, container, false);
         varRvListPet = varView.findViewById(R.id.v1_FrgRecycledView);
-
-        LinearLayoutManager varLLM = new LinearLayoutManager(getActivity());
-        varLLM.setOrientation(LinearLayoutManager.VERTICAL);
-
-        varRvListPet.setLayoutManager(varLLM);
-
-        iniAdaptador();
+        varIPetPresenter = new PetFragmentPresenter(this, getContext());
 
         return varView;
     }
 
-    public void iniAdaptador () {
-        Petadapter varAdapterPet = new Petadapter(varPetsList);
-        varRvListPet.setAdapter(varAdapterPet);
+
+    @Override
+    public void generarLinearLayoutVertical() {
+        LinearLayoutManager varLLM = new LinearLayoutManager(getActivity());
+        varLLM.setOrientation(LinearLayoutManager.VERTICAL);
+        varRvListPet.setLayoutManager(varLLM);
     }
 
+    @Override
+    public Petadapter crearAdapatadorPet(ArrayList<Pet> paramPet) {
+        Petadapter varAdapterPet = new Petadapter(paramPet);
+        return varAdapterPet;
+    }
+
+    @Override
+    public void inicializarAdapatadorReciclerView(Petadapter paramAdaptador) {
+        varRvListPet.setAdapter(paramAdaptador);
+    }
 }

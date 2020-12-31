@@ -15,7 +15,7 @@ public class Pet implements Parcelable {
         }
     };
 
-    private byte varID;
+    private int varID;
     private String varNombre;
     private int varRanking;
     private int varEdad;
@@ -39,11 +39,11 @@ public class Pet implements Parcelable {
         this.varID = in.readByte();
     }
 
-    public byte getVarID() {
+    public int getVarID() {
         return varID;
     }
 
-    public void setVarID(byte varID) {
+    public void setVarID(int varID) {
         this.varID = varID;
     }
 
@@ -91,7 +91,7 @@ public class Pet implements Parcelable {
         dest.writeInt(this.varRanking);
         dest.writeInt(this.varEdad);
         dest.writeInt(this.varFoto);
-        dest.writeByte(this.varID);
+        dest.writeInt(this.varID);
     }
 
 }
