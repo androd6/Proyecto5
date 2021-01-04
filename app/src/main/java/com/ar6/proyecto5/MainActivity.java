@@ -12,13 +12,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ar6.proyecto5.adapters.V1ViewPageAdapter;
+import com.ar6.proyecto5.fragments.PetFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
 
     //private ArrayList<Pet> varPetsList = new ArrayList<>();
     //private CreatePet varPetsIni = new CreatePet();
-    //private V1ViewPageAdapter varViewPagerAdapter;
+    private V1ViewPageAdapter varViewPagerAdapter;
     private ViewPager2 varViewPager;
     private TabLayout varTabLayout;
 
@@ -32,6 +35,28 @@ public class MainActivity extends AppCompatActivity {
         // Definicion del toolbar del activity
         Toolbar varToolbar = findViewById(R.id.v1_ToolBar);
         setSupportActionBar(varToolbar);
+
+        varViewPager = findViewById(R.id.v1_ViewPager);
+        varViewPagerAdapter = new V1ViewPageAdapter(getSupportFragmentManager(),getLifecycle());
+        varViewPagerAdapter.addFragment(new PetFragment());
+        //varViewPagerAdapter.addFragment(new PetDetFragment());
+        varViewPager.setAdapter(varViewPagerAdapter);
+
+        varTabLayout = findViewById(R.id.v1_TabBar);
+        new TabLayoutMediator(varTabLayout, varViewPager, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                switch (position){
+                    case 0:
+                        tab.setText(R.string.v1_Tab1);
+                        break;
+                    case 1:
+                        tab.setText(R.string.v1_Tab2);
+                        break;
+                }
+            }
+        }).attach();
+
     }
 
     public void onClickImgBtn(View v){

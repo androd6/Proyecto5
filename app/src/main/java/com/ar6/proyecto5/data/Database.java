@@ -52,6 +52,7 @@ public class Database extends SQLiteOpenHelper {
         varCursor = varDB.rawQuery(varQuery,null);
 
         while (varCursor.moveToNext()) {
+            varPet = new Pet();
             varPet.setVarID(varCursor.getInt(0));
             varPet.setVarNombre(varCursor.getString(1));
             varPet.setVarEdad(varCursor.getInt(2));

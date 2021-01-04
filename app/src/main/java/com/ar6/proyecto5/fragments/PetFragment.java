@@ -18,17 +18,13 @@ import com.ar6.proyecto5.presentador.PetFragmentPresenter;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PetFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class PetFragment extends Fragment implements IPetFragmentView{
 
     private ArrayList<Pet> varPetsList = new ArrayList<>();
     //private CreatePet varPetsIni = new CreatePet();
     private RecyclerView varRvListPet;
-    private IPetFragmentPresenter varIPetPresenter;
+    private PetFragmentPresenter varIPetPresenter;
 
     public PetFragment() {
         // Required empty public constructor
