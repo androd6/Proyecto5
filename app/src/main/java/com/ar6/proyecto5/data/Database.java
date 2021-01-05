@@ -75,4 +75,10 @@ public class Database extends SQLiteOpenHelper {
         varDB.close();
     }
 
+    public void updateDB(ContentValues varContentValues,int varID){
+        SQLiteDatabase varDB = this.getWritableDatabase();
+        String varwhereClause = "ID = " + varID;
+        varDB.update("Pet",varContentValues,varwhereClause,null);
+        varDB.close();
+    }
 }

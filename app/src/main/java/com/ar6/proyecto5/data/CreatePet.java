@@ -79,4 +79,13 @@ public class CreatePet {
         varContentValues.put("Foto", R.drawable.pet6);
         varDB.insertDB(varContentValues);
     }
+
+    public void darLikePet(Pet varPet) {
+        Database varDB = new Database(varContext);
+        int varNumLikes  = varPet.getVarRanking() ;
+        ContentValues varContentValues = new ContentValues();
+        varContentValues.put("Rank",varNumLikes);
+        varDB.updateDB(varContentValues,varPet.getVarID());
+    }
+
 }

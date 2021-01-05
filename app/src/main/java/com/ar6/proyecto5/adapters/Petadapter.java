@@ -1,5 +1,6 @@
 package com.ar6.proyecto5.adapters;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ar6.proyecto5.R;
+import com.ar6.proyecto5.data.CreatePet;
 import com.ar6.proyecto5.data.Pet;
 
 import java.util.ArrayList;
@@ -48,6 +50,8 @@ public class Petadapter extends RecyclerView.Adapter<Petadapter.PetViewHolder>{
                 int varTempRank = varPet.getVarRanking() + 1;
                 varPet.setVarRanking(varTempRank);
                 varholder.varCvTvRank.setText(Integer.toString(varPet.getVarRanking()));
+                CreatePet varCreatePet = new CreatePet(v.getContext());
+                varCreatePet.darLikePet(varPet);
             }
         });
     }
