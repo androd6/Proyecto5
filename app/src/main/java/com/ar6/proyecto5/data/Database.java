@@ -22,13 +22,30 @@ public class Database extends SQLiteOpenHelper {
     // Crea la estructura de la tabla o tablas
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String varCreateTablePet = "CREATE TABLE Pet(" +
+        String varCreateTablePet = "CREATE TABLE IF NOT EXISTS Pet(" +
                                    "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                                    "Nombre TEXT," +
                                    "Edad INTEGER," +
                                    "Rank INTEGER," +
                                    "Foto INTEGER)";
         db.execSQL(varCreateTablePet);
+
+        String varCreateTableMyPet = "CREATE TABLE IF NOT EXISTS MyPet(" +
+                                     "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                                     "Nombre TEXT," +
+                                     "Edad INTEGER," +
+                                     "Foto INTEGER)";
+        db.execSQL(varCreateTableMyPet);
+
+        String varCreateTableMyPetDet = "CREATE TABLE IF NOT EXISTS MyPetDet(" +
+                                        "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                                        "IDMyPet INTEGER," +
+                                        "Nombre TEXT," +
+                                        "Edad INTEGER," +
+                                        "Rank INTEGER," +
+                                        "Foto INTEGER)";
+        db.execSQL(varCreateTableMyPetDet);
+
     }
 
     // Borra la tabla y la vuelve a crear

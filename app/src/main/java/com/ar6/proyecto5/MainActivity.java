@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ar6.proyecto5.adapters.V1ViewPageAdapter;
+import com.ar6.proyecto5.fragments.MyPetFragment;
 import com.ar6.proyecto5.fragments.PetFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         varViewPager = findViewById(R.id.v1_ViewPager);
         varViewPagerAdapter = new V1ViewPageAdapter(getSupportFragmentManager(),getLifecycle());
         varViewPagerAdapter.addFragment(new PetFragment());
-        //varViewPagerAdapter.addFragment(new PetDetFragment());
+        varViewPagerAdapter.addFragment(new MyPetFragment());
         varViewPager.setAdapter(varViewPagerAdapter);
 
         varTabLayout = findViewById(R.id.v1_TabBar);
