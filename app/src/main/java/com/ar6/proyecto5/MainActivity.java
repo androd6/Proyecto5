@@ -13,10 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ar6.proyecto5.adapters.V1ViewPageAdapter;
+import com.ar6.proyecto5.data.Pet;
 import com.ar6.proyecto5.fragments.MyPetFragment;
 import com.ar6.proyecto5.fragments.PetFragment;
+import com.ar6.proyecto5.presentador.PetFavoritosPresenter;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,7 +65,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickImgBtn(View v){
+        ArrayList<Pet> varPetsList = new ArrayList<>();
+        PetFavoritosPresenter varPetFavPre = new PetFavoritosPresenter(this);
 
+        varPetsList = varPetFavPre.getPetTop5();
+
+        Intent varIntent = new Intent(this, FavoritosActivity.class);
+        varIntent.putParcelableArrayListExtra("Lista", varPetsList);
+        startActivity(varIntent);
     }
 
     @Override

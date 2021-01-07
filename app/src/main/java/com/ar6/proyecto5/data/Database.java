@@ -98,4 +98,94 @@ public class Database extends SQLiteOpenHelper {
         varDB.update("Pet",varContentValues,varwhereClause,null);
         varDB.close();
     }
+
+    public Pet getMyPet() {
+
+        String varQuery;
+        Cursor varCursor;
+        Pet varPet = new Pet();
+
+        varQuery = "SELECT * FROM MyPet";
+
+        SQLiteDatabase varDB = this.getReadableDatabase();
+        varCursor = varDB.rawQuery(varQuery,null);
+
+        varCursor.moveToFirst();
+        varPet.setVarID(varCursor.getInt(0));
+        varPet.setVarNombre(varCursor.getString(1));
+        varPet.setVarEdad(varCursor.getInt(2));
+        varPet.setVarFoto(varCursor.getInt(3));
+
+        varDB.close();
+
+        return varPet;
+    }
+
+    public void insertDBMyPet(ContentValues varContentValues) {
+        SQLiteDatabase varDB = this.getWritableDatabase();
+        varDB.insert("MyPet", null, varContentValues);
+        varDB.close();
+    }
+
+    public ArrayList<Pet> getMyPetDet() {
+        ArrayList<Pet> varPets = new ArrayList<>();
+        String varQuery;
+        Cursor varCursor;
+        Pet varPet;
+
+        varQuery = "SELECT * FROM MyPetDet";
+
+        SQLiteDatabase varDB = this.getReadableDatabase();
+        varCursor = varDB.rawQuery(varQuery,null);
+
+        while (varCursor.moveToNext()) {
+            varPet = new Pet();
+            varPet.setVarID(varCursor.getInt(0));
+            varPet.setVarNombre(varCursor.getString(2));
+            varPet.setVarEdad(varCursor.getInt(3));
+            varPet.setVarRanking(varCursor.getInt(4));
+            varPet.setVarFoto(varCursor.getInt(5));
+
+            varPets.add(varPet);
+
+        }
+
+        varDB.close();
+
+        return varPets;
+    }
+
+    public void insertDBMyPetDet(ContentValues varContentValues) {
+        SQLiteDatabase varDB = this.getWritableDatabase();
+        varDB.insert("MyPetDet", null, varContentValues);
+        varDB.close();
+    }
+
+    public ArrayList<Pet> getPetFav() {
+        ArrayList<Pet> varPets = new ArrayList<>();
+        String varQuery;
+        Cursor varCursor;
+        Pet varPet;
+
+        varQuery = "SELECT * FROM Pet ORDER BY Rank DESC LIMIT 5";
+
+        SQLiteDatabase varDB = this.getReadableDatabase();
+        varCursor = varDB.rawQuery(varQuery,null);
+
+        while (varCursor.moveToNext()) {
+            varPet = new Pet();
+            varPet.setVarID(varCursor.getInt(0));
+            varPet.setVarNombre(varCursor.getString(1));
+            varPet.setVarEdad(varCursor.getInt(2));
+            varPet.setVarRanking(varCursor.getInt(3));
+            varPet.setVarFoto(varCursor.getInt(4));
+
+            varPets.add(varPet);
+
+        }
+
+        varDB.close();
+
+        return varPets;
+    }
 }
